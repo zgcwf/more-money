@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 /* 底部导航栏样式设计*/
+@import "~@/assets/style/helper.scss";
 nav {
   display: flex;
   justify-content: space-around;
@@ -40,7 +41,7 @@ nav {
     }
   }
   > .item.selected {
-    color: red;
+    color: $color-highlight;
   }
 }
 </style>
