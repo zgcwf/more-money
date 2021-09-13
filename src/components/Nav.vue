@@ -27,7 +27,7 @@ export default {
 nav {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  @extend %outerShadow;
   flex-direction: row;
   font-size: 12px;
   > .item {

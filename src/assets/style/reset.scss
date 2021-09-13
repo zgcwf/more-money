@@ -1,18 +1,23 @@
 // 设置默认样式
 * {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
-ul, ol{
+ul,
+ol {
   list-style: none;
 }
-button, input{
+button,
+input {
   font: inherit;
+  // 设置字体为可继承的
 }
-:focus{
+:focus {
   outline: none;
+  // 获取焦点时取消边框
 }
