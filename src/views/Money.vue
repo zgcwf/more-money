@@ -2,7 +2,8 @@
   <Layout class-prefix="layout">
     <NumberPad></NumberPad>
     <Notes></Notes>
-    <Tags></Tags>
+    <Tags :dataSource="tags"></Tags>
+    <!-- <Tags :data-source.sync="tags" /> -->
     <Types></Types>
   </Layout>
 </template>
@@ -19,6 +20,25 @@ export default {
     NumberPad,
     Notes,
     Tags,
+  },
+  data() {
+    return {
+      tags: ["衣", "食", "住", "行", "彩票"],
+    };
+  },
+  methods: {
+    demo(name) {
+      if (name !== null && name !== "") {
+        this.tags.push(name);
+      }
+    },
+  },
+  mounted() {
+    // 接收数据
+    this.$bus.$on("create", this.demo);
+  },
+  beforeDestroy() {
+    this.$bus.$off("hello");
   },
 };
 </script>

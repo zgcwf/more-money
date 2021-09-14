@@ -1,5 +1,6 @@
 <template>
   <div class="layout-wrapper" :class="classPrefix && `${classPrefix}-wrapper`">
+    <!-- 如果有classPrefix，则执行`${classPrefix}-wrapper` -->
     <div class="content" :class="classPrefix && `${classPrefix}-content`">
       <slot></slot>
     </div>
