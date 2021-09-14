@@ -52,7 +52,7 @@ export default {
       $h: 24px;
       height: $h;
       line-height: $h;
-      border-radius: ($h/3);
+      border-radius: $h * 0.333333;
       padding: 0 16px;
       margin-right: 12px;
       margin-top: 4px;
