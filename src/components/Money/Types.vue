@@ -12,36 +12,37 @@
   </div>
 </template>
 
-// <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+<script>
+export default {
+  name: "Types",
+  data() {
+    return {
+      type: "-",
+    };
+  },
+  methods: {
+    selectType(type) {
+      if (type !== "-" && type !== "+") {
+        throw new Error("type is unknown");
+      }
+      this.type = type;
+      this.$bus.$emit("update:type", this.type);
+    },
+  },
+};
+// import Vue from "vue";
+// import { Component } from "vue-property-decorator";
 
-@Component
-export default class Types extends Vue {
-  type: string = "-";
-  selectType(type: string) {
-    if (type !== "-" && type !== "+") {
-      throw new Error("type is unknown");
-    }
-    this.type = type;
-  }
-}
-// export default {
-//   name: "Types",
-//   data() {
-//     return {
-//       type: "-",
-//     };
-//   },
-//   methods: {
-//     selectType(type) {
-//       if (type !== "-" && type !== "+") {
-//         throw new Error("type is unknown");
-//       }
-//       this.type = type;
-//     },
-//   },
-// };
+// @Component
+// export default class Types extends Vue {
+//   type: string = "-";
+//   selectType(type: string) {
+//     if (type !== "-" && type !== "+") {
+//       throw new Error("type is unknown");
+//     }
+//     this.type = type;
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>

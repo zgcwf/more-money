@@ -7,21 +7,28 @@
   </div>
 </template>
 
-<script lang='ts'>
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-@Component
-export default class Notes extends Vue {
-  value = "";
-}
-// export default {
-//   name: "Notes",
-//   data() {
-//     return {
-//       value: "",
-//     };
-//   },
-// };
+<script>
+export default {
+  name: "Notes",
+  data() {
+    return {
+      value: "",
+    };
+  },
+  watch: {
+    value: {
+      handler(newvalue) {
+        this.$bus.$emit("update:value", newvalue);
+      },
+    },
+  },
+};
+// import Vue from "vue";
+// import { Component } from "vue-property-decorator";
+// @Component
+// export default class Notes extends Vue {
+//   value = "";
+// }
 </script>
 
 <style lang="scss" scoped>

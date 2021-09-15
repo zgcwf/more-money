@@ -18,6 +18,47 @@
 </template>
 
 <script>
+export default {
+  name: "Tags",
+  props: ["dataSource"],
+  data() {
+    return {
+      selectedTags: [],
+      // 通过toggle动态添加或删除标签
+    };
+  },
+  methods: {
+    toggle(tag) {
+      const index = this.selectedTags.indexOf(tag);
+      // 查看selectedTags中是否有点击的标签，并获得其索引
+      if (index >= 0) {
+        // 如果有，则删除
+        this.selectedTags.splice(index, 1);
+      } else {
+        // 如果没有，则添加
+        this.selectedTags.push(tag);
+      }
+      this.$bus.$emit("update:selectedTags", this.selectedTags);
+    },
+    create() {
+      const name = window.prompt("请输入标签名");
+      // console.log(name);,当点击取消是name值为null
+      const index = this.dataSource.indexOf(name);
+      // 查看dataSource中是否已存在该标签，并获得其索引
+      if (index >= 0) {
+        // 如果存在
+        // this.dataSource.splice(index, 1);
+        window.alert("标签名已存在");
+        return;
+      }
+      if (name === "") {
+        window.alert("标签名不能为空");
+      }
+      // 提供数据
+      this.$bus.$emit("create", name);
+    },
+  },
+};
 // import Vue from "vue";
 // import { Component, Prop } from "vue-property-decorator";
 // // 搜索查看vue-property-decorator文档用法
@@ -47,47 +88,6 @@
 //     }
 //   }
 // }
-
-export default {
-  name: "Tags",
-  props: ["dataSource"],
-  data() {
-    return {
-      selectedTags: [],
-      // 通过toggle动态添加或删除标签
-    };
-  },
-  methods: {
-    toggle(tag) {
-      const index = this.selectedTags.indexOf(tag);
-      // 查看selectedTags中是否有点击的标签，并获得其索引
-      if (index >= 0) {
-        // 如果有，则删除
-        this.selectedTags.splice(index, 1);
-      } else {
-        // 如果没有，则添加
-        this.selectedTags.push(tag);
-      }
-    },
-    create() {
-      const name = window.prompt("请输入标签名");
-      // console.log(name);,当点击取消是name值为null
-      const index = this.dataSource.indexOf(name);
-      // 查看dataSource中是否已存在该标签，并获得其索引
-      if (index >= 0) {
-        // 如果存在
-        // this.dataSource.splice(index, 1);
-        window.alert("标签名已存在");
-        return;
-      }
-      if (name === "") {
-        window.alert("标签名不能为空");
-      }
-      // 提供数据
-      this.$bus.$emit("create", name);
-    },
-  },
-};
 </script>
 
 <style lang="scss" scoped>

@@ -20,97 +20,99 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-@Component
-export default class NumberPad extends Vue {
-  output: string = "0";
-  inputContent(event: MouseEvent) {
-    const button = event.target as HTMLButtonElement;
-    // as HTMLButtonElement 将其强制指定为button类型
-    const input = button.textContent!;
-    // ！表示指定其值非空
-    if (this.output.length === 16) {
-      return;
-    }
-    if (this.output === "0") {
-      if ("0123456789".indexOf(input) >= 0) {
-        this.output = input;
-      } else {
-        this.output += input;
+<script>
+export default {
+  name: "NumberPad",
+  data() {
+    return {
+      output: "0",
+    };
+  },
+  methods: {
+    inputContent(event) {
+      const button = event.target;
+      const input = button.textContent;
+      // 获取点击事件的值
+      if (this.output.length === 16) {
+        return;
+        // 设置字符串最大长度为16
       }
-      return;
-    }
-    if (this.output.indexOf(".") >= 0 && input === ".") {
-      return;
-    }
-    this.output += input;
-  }
-
-  remove() {
-    if (this.output.length === 1) {
+      if (this.output === "0") {
+        if ("0123456789".indexOf(input) >= 0) {
+          this.output = input;
+          // 初始值为0，第一次点击将其替换为点击的数字
+        } else {
+          // 如果点击的是'.',则字符串相加变为0.
+          this.output += input;
+        }
+        return;
+      }
+      if (this.output.indexOf(".") >= 0 && input === ".") {
+        // 判定如果输出结果中有'.'，并且再次点击'.'，则弹出
+        return;
+      }
+      // 上述判断都通过，字符串相加
+      this.output += input;
+    },
+    remove() {
+      if (this.output.length === 1) {
+        this.output = "0";
+        // 如果长度变为1，则再次点击删除将输出值变为0
+      } else {
+        this.output = this.output.slice(0, -1);
+        // 如果长度不为1，则删除最后一位
+      }
+    },
+    clear() {
       this.output = "0";
-    } else {
-      this.output = this.output.slice(0, -1);
-    }
-  }
-
-  clear() {
-    this.output = "0";
-  }
-
-  ok() {}
-}
-
-// export default {
-//   name: "NumberPad",
-//   data() {
-//     return {
-//       output: "0",
-//     };
-//   },
-//   methods: {
-//     inputContent(event) {
-//       const button = event.target;
-//       const input = button.textContent;
-//       // 获取点击事件的值
-//       if (this.output.length === 16) {
-//         return;
-//         // 设置字符串最大长度为16
-//       }
-//       if (this.output === "0") {
-//         if ("0123456789".indexOf(input) >= 0) {
-//           this.output = input;
-//           // 初始值为0，第一次点击将其替换为点击的数字
-//         } else {
-//           // 如果点击的是'.',则字符串相加变为0.
-//           this.output += input;
-//         }
-//         return;
-//       }
-//       if (this.output.indexOf(".") >= 0 && input === ".") {
-//         // 判定如果输出结果中有'.'，并且再次点击'.'，则弹出
-//         return;
-//       }
-//       // 上述判断都通过，字符串相加
-//       this.output += input;
-//     },
-//     remove() {
-//       if (this.output.length === 1) {
-//         this.output = "0";
-//         // 如果长度变为1，则再次点击删除将输出值变为0
+    },
+    ok() {
+      this.$bus.$emit("update:output", this.output);
+    },
+  },
+};
+// import Vue from "vue";
+// import { Component } from "vue-property-decorator";
+// @Component
+// export default class NumberPad extends Vue {
+//   output: string = "0";
+//   inputContent(event: MouseEvent) {
+//     const button = event.target as HTMLButtonElement;
+//     // as HTMLButtonElement 将其强制指定为button类型
+//     const input = button.textContent!;
+//     // ！表示指定其值非空
+//     if (this.output.length === 16) {
+//       return;
+//     }
+//     if (this.output === "0") {
+//       if ("0123456789".indexOf(input) >= 0) {
+//         this.output = input;
 //       } else {
-//         this.output = this.output.slice(0, -1);
-//         // 如果长度不为1，则删除最后一位
+//         this.output += input;
 //       }
-//     },
-//     clear() {
+//       return;
+//     }
+//     if (this.output.indexOf(".") >= 0 && input === ".") {
+//       return;
+//     }
+//     this.output += input;
+//   }
+
+//   remove() {
+//     if (this.output.length === 1) {
 //       this.output = "0";
-//     },
-//     ok() {},
-//   },
-// };
+//     } else {
+//       this.output = this.output.slice(0, -1);
+//     }
+//   }
+
+//   clear() {
+//     this.output = "0";
+//   }
+
+//   ok() {
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>
