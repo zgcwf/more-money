@@ -14,6 +14,9 @@ import NumberPad from "@/components/Money/NumberPad.vue";
 import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
+import recordListModel from "@/models/recordListModel";
+import tagListModel from "@/models/tagListModel";
+
 export default {
   name: "Money",
   components: {
@@ -32,7 +35,8 @@ export default {
         amount: "0",
         createAt: Date,
       },
-      recordList: JSON.parse(localStorage.getItem("recordList")) || [],
+      // recordList: JSON.parse(localStorage.getItem("recordList")) || [],
+      recordList: recordListModel.fetch(), //用于读取缓存数据
     };
   },
   methods: {
@@ -61,7 +65,8 @@ export default {
     // 用于点击ok后将record放入数组recordlist
     saveRecord() {
       // 深拷贝
-      const record2 = JSON.parse(JSON.stringify(this.record));
+      // const record2 = JSON.parse(JSON.stringify(this.record));
+      const record2 = recordListModel.clone(this.record);
       record2.createdAt = new Date();
       this.recordList.push(record2);
     },
@@ -71,7 +76,8 @@ export default {
     recordList: {
       deep: true,
       handler() {
-        localStorage.setItem("recordList", JSON.stringify(this.recordList));
+        // localStorage.setItem("recordList", JSON.stringify(this.recordList));
+        recordListModel.save(this.recordList); //缓存当前recordList的内容
       },
     },
   },
