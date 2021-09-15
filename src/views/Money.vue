@@ -1,6 +1,5 @@
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
     <NumberPad></NumberPad>
     <Notes></Notes>
     <Tags :dataSource="tags"></Tags>
@@ -27,7 +26,8 @@ export default {
   },
   data() {
     return {
-      tags: ["衣", "食", "住", "行", "彩票"],
+      // tags: ["衣", "食", "住", "行", "彩票"],
+      tags: tagListModel.fetch(),
       record: {
         tags: [],
         notes: "",
@@ -43,7 +43,8 @@ export default {
     // 用于新增标签
     createtag(name) {
       if (name !== null && name !== "") {
-        this.tags.push(name);
+        this.tags.push({ id: name, name: name });
+        tagListModel.save();
       }
     },
     // 用于更新备注内容

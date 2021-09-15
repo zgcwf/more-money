@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Money from "../views/Money.vue";
 import Labels from "@/views/Labels.vue";
 import NotFound from "@/views/NotFound.vue";
+import EditLabel from "@/views/EditLabel.vue";
 // @后面直接跟文件目录可以省掉寻找路径过程
 import Statistics from "@/views/Statistics.vue";
 Vue.use(VueRouter);
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/labels",
     component: Labels,
+  },
+  {
+    path: "/labels/edit/:id",
+    component: EditLabel,
   },
   {
     path: "/statistics",

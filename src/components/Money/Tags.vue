@@ -7,11 +7,11 @@
       <!-- :class动态添加类名，如果selectedTags有tag标签，则动态给其selected类 -->
       <li
         v-for="tag in dataSource"
-        :key="tag"
+        :key="tag.id"
         @click="toggle(tag)"
         :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
       >
-        {{ tag }}
+        {{ tag.name }}
       </li>
     </ul>
   </div>
