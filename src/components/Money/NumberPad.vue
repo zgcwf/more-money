@@ -88,6 +88,7 @@ export default {
     padding: 5px 16px;
     text-align: right;
     height: 64px;
+    background-color: #fff;
   }
   .buttons {
     @extend %clearFix;

@@ -1,8 +1,8 @@
 <template>
   <div>
     <label class="notes">
-      <span class="name">备注</span>
-      <input type="text" v-model="value" placeholder="在这里输入备注" />
+      <span class="name">{{ fieldName }}</span>
+      <input type="text" v-model="value" :placeholder="this.placeholder" />
     </label>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
 export default {
   name: "Notes",
+  props: ["fieldName", "placeholder"],
   data() {
     return {
       value: "",
@@ -28,7 +29,6 @@ export default {
 <style lang="scss" scoped>
 .notes {
   font-size: 14px;
-  background: #f5f5f5;
   padding-left: 16px;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@ export default {
     padding-right: 16px;
   }
   input {
-    height: 64px;
+    height: 48px;
     flex-grow: 1;
     background: transparent;
     border: none;

@@ -63,6 +63,7 @@ export default {
 
 <style lang="scss" scoped>
 .tags {
+  background-color: #fff;
   display: flex;
   font-size: 14px;
   padding: 16px;

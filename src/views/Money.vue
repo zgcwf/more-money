@@ -1,7 +1,10 @@
 <template>
   <Layout class-prefix="layout">
     <NumberPad></NumberPad>
-    <Notes></Notes>
+    <div class="notes">
+      <Notes placeholder="在这里输入备注" fieldName="备注"></Notes>
+    </div>
+
     <Tags :dataSource="tags"></Tags>
     <!-- <Tags :data-source.sync="tags" /> -->
     <Types></Types>
@@ -102,9 +105,8 @@ export default {
 };
 </script>
 
-<style >
-.layout-content {
-  display: flex;
-  flex-direction: column-reverse;
+<style scoped>
+.notes {
+  padding: 8px 0;
 }
 </style>

@@ -1,16 +1,26 @@
 <template>
   <Layout>
-    <div>
-      <Icon name="left"></Icon>
-      <span> 编辑标签 </span>
+    <div class="navBar">
+      <Icon class="leftIcon" name="left"></Icon>
+      <span class="title">编辑标签</span>
+      <span class="rightIcon"></span>
+    </div>
+    <div class="form-wrapper">
+      <Notes placeholder="请输入标签名" fieldName="标签名"></Notes>
+    </div>
+    <div class="button-wrapper">
+      <Button>删除标签</Button>
     </div>
   </Layout>
 </template>
 <script>
 import tagListModel from "@/models/tagListModel";
 import Layout from "@/components/Layout.vue";
+import Notes from "@/components/Money/Notes.vue";
+import Button from "@/components/Button.vue";
+
 export default {
-  components: { Layout },
+  components: { Notes, Layout, Button },
   name: "EditLabel",
   data() {
     return {};
