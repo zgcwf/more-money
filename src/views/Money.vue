@@ -30,6 +30,7 @@ export default {
         notes: "",
         type: "-",
         amount: "0",
+        createAt: Date,
       },
       recordList: JSON.parse(localStorage.getItem("recordList")) || [],
     };
@@ -61,6 +62,7 @@ export default {
     saveRecord() {
       // 深拷贝
       const record2 = JSON.parse(JSON.stringify(this.record));
+      record2.createdAt = new Date();
       this.recordList.push(record2);
     },
   },
