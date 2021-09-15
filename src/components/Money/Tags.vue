@@ -59,35 +59,6 @@ export default {
     },
   },
 };
-// import Vue from "vue";
-// import { Component, Prop } from "vue-property-decorator";
-// // 搜索查看vue-property-decorator文档用法
-// @Component
-// export default class Tags extends Vue {
-//   @Prop(Array) readonly dataSource: string[] | undefined;
-//   //  typescript与javascript在写法上的区别：
-//   // 1.typescript后面要跟类型
-//   // 2.typescript 的 data methods 声明周期函数都直接书写
-//   // 3.前面的都属于固定格式
-//   selectedTags: string[] = [];
-//   toggle(tag: string) {
-//     const index = this.selectedTags.indexOf(tag);
-//     if (index >= 0) {
-//       this.selectedTags.splice(index, 1);
-//     } else {
-//       this.selectedTags.push(tag);
-//     }
-//   }
-
-//   create() {
-//     const name = window.prompt("请输入标签名");
-//     if (name === "") {
-//       window.alert("标签名不能为空");
-//     } else if (this.dataSource) {
-//       this.$emit("update:dataSource", [...this.dataSource, name]);
-//     }
-//   }
-// }
 </script>
 
 <style lang="scss" scoped>

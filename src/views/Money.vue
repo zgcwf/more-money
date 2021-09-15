@@ -31,6 +31,7 @@ export default {
         type: "-",
         amount: "0",
       },
+      recordList: JSON.parse(localStorage.getItem("recordList")) || [],
     };
   },
   methods: {
@@ -56,6 +57,21 @@ export default {
     updatetype(type) {
       this.record.type = type;
     },
+    // 用于点击ok后将record放入数组recordlist
+    saveRecord() {
+      // 深拷贝
+      const record2 = JSON.parse(JSON.stringify(this.record));
+      this.recordList.push(record2);
+    },
+  },
+  // 一旦recordlist改变，则将其缓存
+  watch: {
+    recordList: {
+      deep: true,
+      handler() {
+        localStorage.setItem("recordList", JSON.stringify(this.recordList));
+      },
+    },
   },
   mounted() {
     // 接收数据
@@ -64,9 +80,15 @@ export default {
     this.$bus.$on("update:output", this.updataoutput);
     this.$bus.$on("update:selectedTags", this.updateselectedTags);
     this.$bus.$on("update:type", this.updatetype);
+    this.$bus.$on("submit", this.saveRecord);
   },
   beforeDestroy() {
-    this.$bus.$off("hello");
+    this.$bus.$off("create");
+    this.$bus.$off("update:value");
+    this.$bus.$off("update:output");
+    this.$bus.$off("update:selectedTags");
+    this.$bus.$off("update:type");
+    this.$bus.$off("submit");
   },
 };
 </script>

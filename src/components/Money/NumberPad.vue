@@ -68,51 +68,12 @@ export default {
     },
     ok() {
       this.$bus.$emit("update:output", this.output);
+      this.$bus.$emit("submit", this.output);
+      this.output = "0";
+      // 点击ok后将数值变为0
     },
   },
 };
-// import Vue from "vue";
-// import { Component } from "vue-property-decorator";
-// @Component
-// export default class NumberPad extends Vue {
-//   output: string = "0";
-//   inputContent(event: MouseEvent) {
-//     const button = event.target as HTMLButtonElement;
-//     // as HTMLButtonElement 将其强制指定为button类型
-//     const input = button.textContent!;
-//     // ！表示指定其值非空
-//     if (this.output.length === 16) {
-//       return;
-//     }
-//     if (this.output === "0") {
-//       if ("0123456789".indexOf(input) >= 0) {
-//         this.output = input;
-//       } else {
-//         this.output += input;
-//       }
-//       return;
-//     }
-//     if (this.output.indexOf(".") >= 0 && input === ".") {
-//       return;
-//     }
-//     this.output += input;
-//   }
-
-//   remove() {
-//     if (this.output.length === 1) {
-//       this.output = "0";
-//     } else {
-//       this.output = this.output.slice(0, -1);
-//     }
-//   }
-
-//   clear() {
-//     this.output = "0";
-//   }
-
-//   ok() {
-//   }
-// }
 </script>
 
 <style lang="scss" scoped>
