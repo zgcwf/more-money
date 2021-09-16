@@ -6,7 +6,7 @@
         type="text"
         @input="onInput($event.target.value)"
         :value="value"
-        :placeholder="this.placeholder"
+        :placeholder="placeholder"
       />
     </label>
   </div>
@@ -18,7 +18,8 @@ export default {
   props: ["fieldName", "placeholder", "value"],
   methods: {
     onInput(value) {
-      value !== this.value && this.$bus.$emit("update:value", value);
+      this.$emit("update:value", value);
+      // value !== this.value && this.$bus.$emit("update:value", value);
       // 如果你输入的值不等于父组件传递的值，则调用$emit
     },
   },

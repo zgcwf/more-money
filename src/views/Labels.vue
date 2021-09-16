@@ -7,7 +7,7 @@
         :key="tag.id"
         :to="`/labels/edit/${tag.id}`"
       >
-        <span>{{ tag.id }}</span>
+        <span>{{ tag.name }}</span>
         <Icon name="right" />
       </router-link>
     </div>
@@ -20,7 +20,7 @@
 <script>
 import tagListModel from "@/models/tagListModel";
 import Button from "@/components/Button.vue";
-
+tagListModel.fetch();
 export default {
   name: "Labels",
   data() {

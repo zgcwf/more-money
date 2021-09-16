@@ -1,9 +1,12 @@
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
     <NumberPad></NumberPad>
     <div class="notes">
-      <Notes placeholder="在这里输入备注" fieldName="备注"></Notes>
+      <Notes
+        placeholder="在这里输入备注"
+        fieldName="备注"
+        @update:value="updatavalue"
+      ></Notes>
     </div>
 
     <Tags :dataSource="tags"></Tags>
@@ -90,7 +93,7 @@ export default {
   mounted() {
     // 接收数据
     this.$bus.$on("create", this.createtag);
-    this.$bus.$on("update:value", this.updatavalue);
+    // this.$bus.$on("update:value", this.updatavalue);
     this.$bus.$on("update:output", this.updataoutput);
     this.$bus.$on("update:selectedTags", this.updateselectedTags);
     this.$bus.$on("update:type", this.updatetype);
@@ -98,7 +101,7 @@ export default {
   },
   beforeDestroy() {
     this.$bus.$off("create");
-    this.$bus.$off("update:value");
+    // this.$bus.$off("update:value");
     this.$bus.$off("update:output");
     this.$bus.$off("update:selectedTags");
     this.$bus.$off("update:type");
