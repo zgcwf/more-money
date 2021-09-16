@@ -1,5 +1,6 @@
 <template>
   <Layout class-prefix="layout">
+    {{ record }}
     <NumberPad></NumberPad>
     <div class="notes">
       <Notes placeholder="在这里输入备注" fieldName="备注"></Notes>
@@ -38,10 +39,17 @@ export default {
         amount: "0",
         createAt: Date,
       },
+      // noteValue: "132",
       // recordList: JSON.parse(localStorage.getItem("recordList")) || [],
       recordList: recordListModel.fetch(), //用于读取缓存数据
     };
   },
+  // created() {
+  //   this.$bus.$on("update:value", (value) => {
+  //     console.log("bus ", value);
+  //     this.noteValue = value;
+  //   });
+  // },
   methods: {
     // 用于新增标签
     createtag(name) {

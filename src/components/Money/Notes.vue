@@ -2,7 +2,12 @@
   <div>
     <label class="notes">
       <span class="name">{{ fieldName }}</span>
-      <input type="text" v-model="value" :placeholder="this.placeholder" />
+      <input
+        type="text"
+        @input="onInput($event.target.value)"
+        :value="value"
+        :placeholder="this.placeholder"
+      />
     </label>
   </div>
 </template>
@@ -10,19 +15,22 @@
 <script>
 export default {
   name: "Notes",
-  props: ["fieldName", "placeholder"],
-  data() {
-    return {
-      value: "",
-    };
-  },
-  watch: {
-    value: {
-      handler(newvalue) {
-        this.$bus.$emit("update:value", newvalue);
-      },
+  props: ["fieldName", "placeholder", "value"],
+  methods: {
+    onInput(value) {
+      // console.log("onInput ", value);
+      value !== this.value && this.$bus.$emit("update:value", value);
     },
   },
+  // watch: {
+  //   value: {
+  //     immediate: true,
+  //     handler(prev, cur) {
+  //       console.log("watch ", prev, cur);
+  //       this.onInput(prev);
+  //     },
+  //   },
+  // },
 };
 </script>
 
