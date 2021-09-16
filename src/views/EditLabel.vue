@@ -35,7 +35,7 @@ export default {
   created() {
     // 得到路由参数id
     const id = this.$route.params.id;
-    tagListModel.fetch(); //读取缓存（id，name）
+    // tagListModel.fetch(); //读取缓存（id，name）
     const tags = tagListModel.data;
     const tag = tags.filter((tag) => tag.id === id)[0];
     if (tag) {

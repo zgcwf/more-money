@@ -73,19 +73,10 @@ export default {
     },
     // 用于点击ok后将record放入数组recordlist
     saveRecord() {
-      recordListModel.create(this.record);
+      recordListModel.put(this.record);
     },
   },
-  // 一旦recordlist改变，则将其缓存
-  watch: {
-    recordList: {
-      deep: true,
-      handler() {
-        // localStorage.setItem("recordList", JSON.stringify(this.recordList));
-        recordListModel.save(this.recordList); //缓存当前recordList的内容
-      },
-    },
-  },
+
   mounted() {
     // 接收数据
     this.$bus.$on("create", this.createtag);
