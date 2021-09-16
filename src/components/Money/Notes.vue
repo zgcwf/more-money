@@ -18,19 +18,10 @@ export default {
   props: ["fieldName", "placeholder", "value"],
   methods: {
     onInput(value) {
-      // console.log("onInput ", value);
       value !== this.value && this.$bus.$emit("update:value", value);
+      // 如果你输入的值不等于父组件传递的值，则调用$emit
     },
   },
-  // watch: {
-  //   value: {
-  //     immediate: true,
-  //     handler(prev, cur) {
-  //       console.log("watch ", prev, cur);
-  //       this.onInput(prev);
-  //     },
-  //   },
-  // },
 };
 </script>
 
