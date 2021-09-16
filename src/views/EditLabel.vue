@@ -55,6 +55,7 @@ export default {
       // 移除标签
       if (this.tag) {
         if (tagListModel.remove(this.tag.id)) {
+          // 后退
           this.$router.back();
         } else {
           window.alert("删除失败");

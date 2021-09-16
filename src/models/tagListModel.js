@@ -22,12 +22,16 @@ const tagListModel = {
         return "success";
     },
     update(id, name) {
+        // 获取所有的id
         const idList = this.data.map((item) => item.id)
         if (idList.indexOf(id) >= 0) {
+            // 如果id存在，则获取所有的name
             const names = this.data.map((item) => item.name)
             if (names.indexOf(name) >= 0) {
+                // 如果输入的name已存在,则返回duplicated
                 return "duplicated";
             } else {
+                // 如果输入的name未存在,则将之前的name修改为输入的name则返回success
                 const tag = this.data.filter((item) => item.id === id)[0]
                 tag.name = name
                 this.save();
