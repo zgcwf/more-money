@@ -20,12 +20,11 @@
 <script>
 import tagListModel from "@/models/tagListModel";
 import Button from "@/components/Button.vue";
-tagListModel.fetch();
 export default {
   name: "Labels",
   data() {
     return {
-      tags: tagListModel.data,
+      tags: tagListModel.fetch(),
     };
   },
   components: { Button },
@@ -52,6 +51,8 @@ export default {
   background: white;
   font-size: 16px;
   padding-left: 16px;
+  max-height: 70vh;
+  overflow: auto;
   > .tag {
     min-height: 44px;
     display: flex;

@@ -4,11 +4,13 @@ import { nanoid } from "nanoid";
 const localStorageKeyName = "tagList";
 const tagListModel = {
     data: [],
+    // 读取缓存
     fetch() {
         this.data = JSON.parse(
             window.localStorage.getItem(localStorageKeyName)) || [];
         return this.data;
     },
+    // 创建标签
     create(name) {
         // this.data = [{id:'1', name:'1'}, {id:'2', name:'2'}]
         const names = this.data.map((item) => item.name);
@@ -21,6 +23,7 @@ const tagListModel = {
         // 调用sava将其缓存
         return "success";
     },
+    // 更新标签名
     update(id, name) {
         // 获取所有的id
         const idList = this.data.map((item) => item.id)
@@ -42,6 +45,7 @@ const tagListModel = {
             return 'Not Found'
         }
     },
+    // 删除标签
     remove(id) {
         let index = -1;
         for (let i = 0; i < this.data.length; i++) {
@@ -54,6 +58,7 @@ const tagListModel = {
         this.save();
         return true;
     },
+    // 缓存标签
     save() {
         window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
     },

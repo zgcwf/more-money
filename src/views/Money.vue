@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      // tags: ["衣", "食", "住", "行", "彩票"],
       tags: tagListModel.fetch(),
       record: {
         tags: [],
