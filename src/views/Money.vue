@@ -22,6 +22,7 @@ import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
 import recordListModel from "@/models/recordListModel";
 import tagListModel from "@/models/tagListModel";
+import { nanoid } from "nanoid";
 
 export default {
   name: "Money",
@@ -51,7 +52,7 @@ export default {
     // 用于新增标签
     createtag(name) {
       if (name !== null && name !== "") {
-        this.tags.push({ id: name, name: name });
+        this.tags.push({ id: nanoid(), name: name });
         tagListModel.save();
       }
     },
