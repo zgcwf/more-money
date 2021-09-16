@@ -74,11 +74,7 @@ export default {
     },
     // 用于点击ok后将record放入数组recordlist
     saveRecord() {
-      // 深拷贝
-      // const record2 = JSON.parse(JSON.stringify(this.record));
-      const record2 = recordListModel.clone(this.record);
-      record2.createdAt = new Date();
-      this.recordList.push(record2);
+      recordListModel.create(this.record);
     },
   },
   // 一旦recordlist改变，则将其缓存

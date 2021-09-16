@@ -1,13 +1,19 @@
+import clone from '@/lib/clone';
+// 引入克隆js文件
 const localStorageKeyName = 'recordList';
 const recordListModel = {
-    clone(data) {
-        return JSON.parse(JSON.stringify(data));
+    data: [],
+    create(record) {
+        const record2 = clone(record);
+        record2.createdAt = new Date();
+        this.data.push(record2);
     },
     fetch() {
-        return JSON.parse(window.localStorage.getItem(localStorageKeyName)) || []
+        this.data = JSON.parse(window.localStorage.getItem(localStorageKeyName)) || []
+        return this.data
     },
-    save(data) {
-        window.localStorage.setItem(localStorageKeyName, JSON.stringify(data));
+    save() {
+        window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
     }
 };
 export default recordListModel;
