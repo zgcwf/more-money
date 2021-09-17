@@ -43,7 +43,7 @@ const store = new Vuex.Store({
       );
     },
     // 创建标签
-    create(state, name: string) {
+    createTags(state, name: string) {
       const names = state.tagList.map((item) => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert("标签名重复了");
