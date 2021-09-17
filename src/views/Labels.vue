@@ -22,24 +22,22 @@ import tagListModel from "@/models/tagListModel";
 import Button from "@/components/Button.vue";
 export default {
   name: "Labels",
-  data() {
-    return {
-      tags: tagListModel.fetch(),
-    };
-  },
   components: { Button },
+  created() {
+    this.$store.commit("fetchTags"); //创建时读取缓存
+  },
+  computed: {
+    tags() {
+      return this.$store.state.tagList;
+    },
+  },
+
   methods: {
     createTag() {
       const name = window.prompt("请输入标签名");
       // 得到输入值name，如果name不为空，执行下面语句
       if (name) {
-        const message = tagListModel.create(name);
-        // 调用tagListModel.create（）方法并吧name传入
-        if (message === "duplicated") {
-          window.alert("标签名重复了");
-        } else if (message === "success") {
-          window.alert("添加成功");
-        }
+        this.$store.commit("create", name);
       }
     },
   },

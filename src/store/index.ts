@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import clone from "@/lib/libts/clone ";
+import { nanoid } from "nanoid";
 
 Vue.use(Vuex);
 type RootState = {
@@ -41,9 +42,19 @@ const store = new Vuex.Store({
         window.localStorage.getItem("tagList") || "[]"
       );
     },
+    // 创建标签
+    create(state, name: string) {
+      const names = state.tagList.map((item) => item.name);
+      if (names.indexOf(name) >= 0) {
+        window.alert("标签名重复了");
+        return;
+      }
+      state.tagList.push({ id: nanoid(), name: name });
+      store.commit("saveTags");
+      window.alert("添加成功");
+    },
     saveTags(state) {
       window.localStorage.setItem("tagList", JSON.stringify(state.tagList));
-      console.log(1);
     },
   },
 

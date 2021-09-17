@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
       <!-- :class动态添加类名，如果selectedTags有tag标签，则动态给其selected类 -->
@@ -40,22 +40,12 @@ export default {
       }
       this.$bus.$emit("update:selectedTags", this.selectedTags);
     },
-    create() {
+    createTag() {
       const name = window.prompt("请输入标签名");
-      // console.log(name);,当点击取消是name值为null
-      const index = this.dataSource.indexOf(name);
-      // 查看dataSource中是否已存在该标签，并获得其索引
-      if (index >= 0) {
-        // 如果存在
-        // this.dataSource.splice(index, 1);
-        window.alert("标签名已存在");
-        return;
+      // 得到输入值name，如果name不为空，执行下面语句
+      if (name) {
+        this.$store.commit("create", name);
       }
-      if (name === "") {
-        window.alert("标签名不能为空");
-      }
-      // 提供数据
-      this.$bus.$emit("create", name);
     },
   },
 };

@@ -51,13 +51,6 @@ export default {
     },
   },
   methods: {
-    // 用于新增标签
-    createtag(name) {
-      if (name !== null && name !== "") {
-        this.tags.push({ id: nanoid(), name: name });
-        this.$store.commit("saveTags");
-      }
-    },
     // 用于更新备注内容
     updatavalue(newvalue) {
       this.record.notes = newvalue;
@@ -81,17 +74,12 @@ export default {
   },
 
   mounted() {
-    // 接收数据
-    this.$bus.$on("create", this.createtag);
-    // this.$bus.$on("update:value", this.updatavalue);
     this.$bus.$on("update:output", this.updataoutput);
     this.$bus.$on("update:selectedTags", this.updateselectedTags);
     this.$bus.$on("update:type", this.updatetype);
     this.$bus.$on("submit", this.saveRecord);
   },
   beforeDestroy() {
-    this.$bus.$off("create");
-    // this.$bus.$off("update:value");
     this.$bus.$off("update:output");
     this.$bus.$off("update:selectedTags");
     this.$bus.$off("update:type");
