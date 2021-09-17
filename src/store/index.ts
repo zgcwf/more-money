@@ -16,6 +16,9 @@ const store = new Vuex.Store({
     currentTag: undefined,
   } as RootState,
   mutations: {
+    setCurrentTag(state, id: string) {
+      state.currentTag = state.tagList.filter((t) => t.id === id)[0];
+    },
     //读取缓存
     fetchRecords(state) {
       state.recordList = JSON.parse(
@@ -37,6 +40,7 @@ const store = new Vuex.Store({
         JSON.stringify(state.recordList)
       );
     },
+    //读取缓存
     fetchTags(state) {
       state.tagList = JSON.parse(
         window.localStorage.getItem("tagList") || "[]"
@@ -53,6 +57,7 @@ const store = new Vuex.Store({
       store.commit("saveTags");
       window.alert("添加成功");
     },
+    // 用于缓存tagList
     saveTags(state) {
       window.localStorage.setItem("tagList", JSON.stringify(state.tagList));
     },

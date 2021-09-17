@@ -27,20 +27,17 @@ import Button from "@/components/Button.vue";
 export default {
   components: { Notes, Layout, Button },
   name: "EditLabel",
-  data() {
-    return {
-      tag: "",
-    };
+  computed: {
+    tag() {
+      return this.$store.state.currentTag;
+    },
   },
   created() {
     // 得到路由参数id
     const id = this.$route.params.id;
-    // tagListModel.fetch(); //读取缓存（id，name）
-    const tags = tagListModel.data;
-    const tag = tags.filter((tag) => tag.id === id)[0];
-    if (tag) {
-      this.tag = tag;
-    } else {
+    this.$store.commit("fetchTags");
+    this.$store.commit("setCurrentTag", id);
+    if (!this.tag) {
       this.$router.replace("/404");
     }
   },

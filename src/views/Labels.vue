@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import tagListModel from "@/models/tagListModel";
 import Button from "@/components/Button.vue";
 export default {
   name: "Labels",
