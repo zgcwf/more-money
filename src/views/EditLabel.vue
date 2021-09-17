@@ -45,18 +45,16 @@ export default {
     // 更新标签名
     update(name) {
       if (this.tag) {
-        tagListModel.update(this.tag.id, name);
+        this.$store.commit("updateTag", {
+          id: this.tag.id,
+          name,
+        });
       }
     },
     remove() {
       // 移除标签
       if (this.tag) {
-        if (tagListModel.remove(this.tag.id)) {
-          // 后退
-          this.$router.back();
-        } else {
-          window.alert("删除失败");
-        }
+        this.$store.commit("removeTag", this.tag.id);
       }
     },
     goBack() {
