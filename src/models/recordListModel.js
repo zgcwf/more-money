@@ -1,4 +1,4 @@
-import clone from '@/lib/clone';
+import clone from '@/lib/libjs/clone';
 // 引入克隆js文件
 const localStorageKeyName = 'recordList';
 const recordListModel = {

@@ -20,7 +20,6 @@ import NumberPad from "@/components/Money/NumberPad.vue";
 import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
-import recordListModel from "@/models/recordListModel";
 import tagListModel from "@/models/tagListModel";
 import { nanoid } from "nanoid";
 
@@ -42,11 +41,11 @@ export default {
         amount: "0",
         createAt: Date,
       },
-      // recordList: JSON.parse(localStorage.getItem("recordList")) || [],
-      recordList: recordListModel.fetch(), //用于读取缓存数据
     };
   },
-
+  created() {
+    this.$store.commit("fetchRecords"); //创建时读取缓存
+  },
   methods: {
     // 用于新增标签
     createtag(name) {
@@ -73,7 +72,7 @@ export default {
     },
     // 用于点击ok后将record放入数组recordlist
     saveRecord() {
-      recordListModel.put(this.record);
+      this.$store.commit("createRecord", this.record);
     },
   },
 
