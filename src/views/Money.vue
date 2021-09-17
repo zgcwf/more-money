@@ -20,7 +20,6 @@ import NumberPad from "@/components/Money/NumberPad.vue";
 import Types from "@/components/Money/Types.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
-import tagListModel from "@/models/tagListModel";
 import { nanoid } from "nanoid";
 
 export default {
@@ -33,7 +32,6 @@ export default {
   },
   data() {
     return {
-      tags: tagListModel.fetch(),
       record: {
         tags: [],
         notes: "",
@@ -44,14 +42,20 @@ export default {
     };
   },
   created() {
+    this.$store.commit("fetchTags"); //创建时读取缓存
     this.$store.commit("fetchRecords"); //创建时读取缓存
+  },
+  computed: {
+    tags() {
+      return this.$store.state.tagList;
+    },
   },
   methods: {
     // 用于新增标签
     createtag(name) {
       if (name !== null && name !== "") {
         this.tags.push({ id: nanoid(), name: name });
-        tagListModel.save();
+        this.$store.commit("saveTags");
       }
     },
     // 用于更新备注内容

@@ -36,7 +36,17 @@ const store = new Vuex.Store({
         JSON.stringify(state.recordList)
       );
     },
+    fetchTags(state) {
+      state.tagList = JSON.parse(
+        window.localStorage.getItem("tagList") || "[]"
+      );
+    },
+    saveTags(state) {
+      window.localStorage.setItem("tagList", JSON.stringify(state.tagList));
+      console.log(1);
+    },
   },
+
   actions: {},
   modules: {},
 });
