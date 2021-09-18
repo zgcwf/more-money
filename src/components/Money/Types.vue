@@ -1,11 +1,23 @@
 <template>
   <div>
     <ul class="types">
-      <li :class="type === '-' ? 'selected' : ''" @click="selectType('-')">
+      <li
+        :class="{
+          selected: type === '-',
+          [classPrefix + '-item']: classPrefix,
+        }"
+        @click="selectType('-')"
+      >
         <!-- :class绑定一个js表达式 -->
         支出
       </li>
-      <li :class="type === '+' && 'selected'" v-on:click="selectType('+')">
+      <li
+        :class="{
+          selected: type === '+',
+          [classPrefix + '-item']: classPrefix,
+        }"
+        v-on:click="selectType('+')"
+      >
         收入
       </li>
     </ul>
@@ -15,6 +27,7 @@
 <script>
 export default {
   name: "Types",
+  props: ["classPrefix"],
   data() {
     return {
       type: "-",
