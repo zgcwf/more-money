@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex, { Store } from "vuex";
+import Vuex from "vuex";
 import clone from "@/lib/libts/clone ";
 import { nanoid } from "nanoid";
 import router from "@/router";
@@ -61,9 +61,10 @@ const store = new Vuex.Store({
     // 用于点击ok后将record放入数组recordlist，并缓存
     createRecord(state, record) {
       const record2: RecordItem = clone(record);
-      record2.createdAt = new Date();
+      record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit("saveRecords");
+
       // console.log(state.recordList);
     },
     // 用于缓存recordList

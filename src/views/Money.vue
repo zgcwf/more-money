@@ -68,7 +68,11 @@ export default {
     },
     // 用于点击ok后将record放入数组recordlist
     saveRecord() {
-      this.$store.commit("createRecord", this.record);
+      if (this.record.tags.length === 1) {
+        this.$store.commit("createRecord", this.record);
+      } else {
+        alert("请选择一个标签");
+      }
     },
   },
 
