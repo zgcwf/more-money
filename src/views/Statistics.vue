@@ -7,13 +7,15 @@
         :dataSource="intervalList"
         :value="interval"
       ></Tabs>
+      {{ type }}
+      {{ interval }}
     </Layout>
   </div>
 </template>
 
 <script>
 import Types from "../components/Money/Types.vue";
-import Tabs from "../components/Money/Tabs.vue";
+import Tabs from "../components/Tabs.vue";
 
 export default {
   name: "Statistics",
@@ -27,11 +29,23 @@ export default {
         { text: "按周", value: "week" },
         { text: "按月", value: "month" },
       ],
-      typeList: [
-        { text: "支出", value: "-" },
-        { text: "收入", value: "+" },
-      ],
     };
+  },
+  methods: {
+    updatetype(type) {
+      this.type = type;
+    },
+    updateinterval(value) {
+      this.interval = value;
+    },
+  },
+  mounted() {
+    this.$bus.$on("update:type", this.updatetype);
+    this.$bus.$on("update:interval", this.updateinterval);
+  },
+  beforeDestroy() {
+    this.$bus.$off("update:type");
+    this.$bus.$off("update:interval");
   },
 };
 </script>

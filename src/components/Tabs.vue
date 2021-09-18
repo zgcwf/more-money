@@ -17,7 +17,7 @@ export default {
   props: ["classPrefix", "dataSource", "value"],
   data() {
     return {
-      type: "-",
+      interval: "",
     };
   },
   methods: {
@@ -28,7 +28,7 @@ export default {
       };
     },
     select(item) {
-      this.$bus.$emit("update:type", item.value);
+      this.$bus.$emit("update:interval", item.value);
     },
   },
 };
@@ -39,10 +39,11 @@ export default {
   background: #c4c4c4;
   display: flex;
   text-align: center;
-  font-size: 24px;
+  font-size: 8px;
+  font-weight: 700;
   > li {
     width: 50%;
-    height: 62px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
