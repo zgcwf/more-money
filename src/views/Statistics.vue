@@ -2,16 +2,37 @@
   <div class="x">
     <Layout>
       <Types classPrefix="type"></Types>
-      <Types classPrefix="type1"></Types>
+      <Tabs
+        classPrefix="interval"
+        :dataSource="intervalList"
+        :value="interval"
+      ></Tabs>
     </Layout>
   </div>
 </template>
 
 <script>
 import Types from "../components/Money/Types.vue";
+import Tabs from "../components/Money/Tabs.vue";
+
 export default {
   name: "Statistics",
-  components: { Types },
+  components: { Types, Tabs },
+  data() {
+    return {
+      type: "-",
+      interval: "day",
+      intervalList: [
+        { text: "按天", value: "day" },
+        { text: "按周", value: "week" },
+        { text: "按月", value: "month" },
+      ],
+      typeList: [
+        { text: "支出", value: "-" },
+        { text: "收入", value: "+" },
+      ],
+    };
+  },
 };
 </script>
 
