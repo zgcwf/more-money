@@ -52,23 +52,28 @@ export default {
       if (recordList.length === 0) {
         return [];
       }
+      // 深拷贝
       const newList = clone(recordList)
-        .filter((r) => r.type === this.type)
+        .filter((r) => r.type === this.type) //过滤，实现收入和支出分离
         .sort(
+          //排序，按时间倒序展示数据
           (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
         );
       const result = [
         {
+          //初始化一个数据，并放入存储数据的第0项
           title: dayjs(newList[0].createdAt).format("YYYY-MM-DD"),
           items: [newList[0]],
         },
       ];
       for (let i = 1; i < newList.length; i++) {
-        const current = newList[i];
-        const last = result[result.length - 1];
+        //从第二项开始遍历
+        const current = newList[i]; //让current等于当前项
+        const last = result[result.length - 1]; //让last等于result数组的最后一项
         if (dayjs(last.title).isSame(dayjs(current.createdAt), "day")) {
-          last.items.push(current);
+          last.items.push(current); //如果当前项的时间等于result最后一项的时间（前面已完成时间排序），则将其放入result的最后一项
         } else {
+          //否则在result中创建一个新项
           result.push({
             title: dayjs(current.createdAt).format("YYYY-MM-DD"),
             items: [current],
