@@ -10,7 +10,7 @@
       <div>
         <ol>
           <li v-for="(group, index) in result" :key="index">
-            <h3 class="title">{{ group.title }}</h3>
+            <h3 class="title">{{ beautify(group.title) }}</h3>
             <ol>
               <li v-for="item in group.items" :key="item.id" class="record">
                 <span>{{ item.tags[0].name }}</span>
@@ -28,7 +28,7 @@
 <script>
 import Types from "../components/Money/Types.vue";
 import Tabs from "../components/Tabs.vue";
-
+import dayjs from "dayjs";
 export default {
   name: "Statistics",
   components: { Types, Tabs },
@@ -76,9 +76,16 @@ export default {
     updateinterval(value) {
       this.interval = value;
     },
-    tagString(tags) {
-      console.log(tags);
-      return tags.length === 0 ? "无" : tags.join(",");
+    beautify(string) {
+      if (dayjs().isSame(dayjs(string), "day")) {
+        return "今天";
+      } else if (dayjs(string).isSame(dayjs().subtract(1, "day"), "day")) {
+        return "昨天";
+      } else if (dayjs(string).isSame(dayjs().subtract(2, "day"), "day")) {
+        return "前天";
+      } else {
+        return dayjs(string).format("YYYY年MM月DD日");
+      }
     },
   },
   mounted() {
