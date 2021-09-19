@@ -77,11 +77,17 @@ export default {
       this.interval = value;
     },
     beautify(string) {
+      // dayjs()是获取当前时间
       if (dayjs().isSame(dayjs(string), "day")) {
+        // 比较当前时间与传入时间的天数是否为同一天
+
         return "今天";
       } else if (dayjs(string).isSame(dayjs().subtract(1, "day"), "day")) {
+        // 比较当前时间的前一天与传入时间的天数是否为同一天
+
         return "昨天";
       } else if (dayjs(string).isSame(dayjs().subtract(2, "day"), "day")) {
+        // 比较当前时间的前两天与传入时间的天数是否为同一天
         return "前天";
       } else {
         return dayjs(string).format("YYYY年MM月DD日");
