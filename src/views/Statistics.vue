@@ -9,8 +9,8 @@
       ></Tabs>
       <div>
         <ol>
-          <li v-for="(group, index) in result" :key="index">
-            <h3 class="title">{{ beautify(group.title) }}</h3>
+          <li v-for="(group, index) in groupedList" :key="index">
+            <h4 class="title">{{ beautify(group.title) }}</h4>
             <ol>
               <li v-for="item in group.items" :key="item.id" class="record">
                 <span>{{ item.tags[0].name }}</span>
@@ -29,6 +29,7 @@
 import Types from "../components/Money/Types.vue";
 import Tabs from "../components/Tabs.vue";
 import dayjs from "dayjs";
+import clone from "@/lib/libjs/clone";
 export default {
   name: "Statistics",
   components: { Types, Tabs },
@@ -54,19 +55,33 @@ export default {
       // 获取到recordList的值
       return this.$store.state.recordList;
     },
-    result() {
+    groupedList() {
       const recordList = this.recordList;
-      // 建立一个hash表
-      const hashTable = {};
-      for (let i = 0; i < recordList.length; i++) {
-        // 将每一项的事件前半部分（T之前的）分离出来赋给data
-        const [date, time] = recordList[i].createdAt.split("T");
-        //更新hash表的值，将key值设置为事件
-        hashTable[date] = hashTable[date] || { title: date, items: [] };
-        // 将hash表的value值更新为recordList的每一项
-        hashTable[date].items.push(recordList[i]);
+      if (recordList.length === 0) {
+        return [];
       }
-      return hashTable;
+      const newList = clone(recordList).sort(
+        (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
+      );
+      const result = [
+        {
+          title: dayjs(newList[0].createdAt).format("YYYY-MM-DD"),
+          items: [newList[0]],
+        },
+      ];
+      for (let i = 1; i < newList.length; i++) {
+        const current = newList[i];
+        const last = result[result.length - 1];
+        if (dayjs(last.title).isSame(dayjs(current.createdAt), "day")) {
+          last.items.push(current);
+        } else {
+          result.push({
+            title: dayjs(current.createdAt).format("YYYY-MM-DD"),
+            items: [current],
+          });
+        }
+      }
+      return result;
     },
   },
   methods: {
