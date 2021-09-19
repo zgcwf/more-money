@@ -2,15 +2,13 @@
   <div class="x">
     <Layout>
       <Types classPrefix="type"></Types>
-      <Tabs
-        classPrefix="interval"
-        :dataSource="intervalList"
-        :value="interval"
-      ></Tabs>
+
       <div>
         <ol>
           <li v-for="(group, index) in groupedList" :key="index">
-            <h4 class="title">{{ beautify(group.title) }}</h4>
+            <h4 class="title">
+              {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
+            </h4>
             <ol>
               <li v-for="item in group.items" :key="item.id" class="record">
                 <span>{{ item.tags[0].name }}</span>
@@ -41,12 +39,6 @@ export default {
   data() {
     return {
       type: "-",
-      interval: "day",
-      intervalList: [
-        { text: "按天", value: "day" },
-        { text: "按周", value: "week" },
-        { text: "按月", value: "month" },
-      ],
     };
   },
   computed: {
@@ -60,9 +52,11 @@ export default {
       if (recordList.length === 0) {
         return [];
       }
-      const newList = clone(recordList).sort(
-        (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
-      );
+      const newList = clone(recordList)
+        .filter((r) => r.type === this.type)
+        .sort(
+          (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
+        );
       const result = [
         {
           title: dayjs(newList[0].createdAt).format("YYYY-MM-DD"),
@@ -81,6 +75,11 @@ export default {
           });
         }
       }
+      result.map((group) => {
+        group.total = group.items.reduce((sum, item) => {
+          return sum + item.amount;
+        }, 0);
+      });
       return result;
     },
   },

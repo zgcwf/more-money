@@ -67,8 +67,10 @@ export default {
       this.output = "0";
     },
     ok() {
-      this.$bus.$emit("update:output", this.output);
-      this.$bus.$emit("submit", this.output);
+      const number = parseFloat(this.output);
+      // 将字符串转换成数字
+      this.$bus.$emit("update:output", number);
+      this.$bus.$emit("submit", number);
       this.output = "0";
       // 点击ok后将数值变为0
     },
