@@ -14,7 +14,10 @@ yarn serve
 ```
 yarn build
 ```
-
+### 打包之后
+```
+sh deploy.sh
+```
 ### Run your unit tests
 ```
 yarn test:unit

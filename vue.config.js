@@ -1,9 +1,11 @@
 const path = require('path')
 const port = process.env.port || 9001; //配置端口号
 module.exports = {
+  // yarn build 之后配置
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/more-money-website/'
+    ? '/more-money-website/' //more-money-website映射仓库名
     : '/',
+  // yarn build 之后配置
   lintOnSave: false,
   // 配置svg
   chainWebpack: config => {

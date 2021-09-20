@@ -28,10 +28,12 @@ export default {
   computed: {
     tags() {
       return this.$store.state.tagList;
+      // 得到放在tagList中的标签
     },
   },
 
   methods: {
+    // 创建标签
     createTag() {
       const name = window.prompt("请输入标签名");
       // 得到输入值name，如果name不为空，执行下面语句

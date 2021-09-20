@@ -114,7 +114,7 @@ export default {
       }
       &:nth-child(2),
       &:nth-child(5) {
-        background: darken($bg, 4%); //在￥bg的基础上加深%4的颜色
+        background: darken($bg, 4%); //在$bg的基础上加深%4的颜色
       }
       &:nth-child(3),
       &:nth-child(6),

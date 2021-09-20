@@ -20,6 +20,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
+# 放入映射仓库的SSH地址
 git push -f git@github.com:zgcwf/more-money-website.git master:gh-pages
 
 cd -

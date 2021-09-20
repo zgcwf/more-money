@@ -58,7 +58,7 @@ export default {
       // }
       // 深拷贝
       const newList = clone(recordList)
-        .filter((r) => r.type === this.type) //过滤，实现收入和支出分离
+        .filter((r) => r.type === this.type) //过滤(存储数据的type与当前页面的type)，实现收入和支出分离
         .sort(
           //排序，按时间倒序展示数据
           (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
