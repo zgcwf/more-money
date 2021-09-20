@@ -1,6 +1,9 @@
 const path = require('path')
 const port = process.env.port || 9001; //配置端口号
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/more-money-website/'
+    : '/',
   lintOnSave: false,
   // 配置svg
   chainWebpack: config => {

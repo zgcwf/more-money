@@ -19,7 +19,6 @@
   </Layout>
 </template>
 <script>
-import tagListModel from "@/models/tagListModel";
 import Layout from "@/components/Layout.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Button from "@/components/Button.vue";

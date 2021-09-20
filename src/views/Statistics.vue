@@ -7,7 +7,8 @@
         <ol>
           <li v-for="(group, index) in groupedList" :key="index">
             <h4 class="title">
-              {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
+              {{ beautify(group.title) }}
+              <span class="zgc">总计:￥{{ group.total }}</span>
             </h4>
             <ol>
               <li v-for="item in group.items" :key="item.id" class="record">
@@ -130,10 +131,10 @@ export default {
 <style lang="scss" scoped>
 .x::v-deep {
   .type-item {
-    background: #c4c4c4;
+    background: white;
 
     &.selected {
-      background: white;
+      background: #96a4a7;
 
       &::after {
         display: none;
@@ -150,6 +151,9 @@ export default {
   }
   .title {
     @extend %item;
+    .zgc {
+      width: 100px;
+    }
   }
   .record {
     background: white;
