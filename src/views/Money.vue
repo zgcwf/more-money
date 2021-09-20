@@ -4,8 +4,8 @@
     <div class="notes">
       <Notes
         placeholder="在这里输入备注"
-        fieldName="备注"
-        @update:value="updatavalue"
+        fieldName="备注:"
+        :value.sync="record.notes"
       ></Notes>
     </div>
 
@@ -50,10 +50,6 @@ export default {
     },
   },
   methods: {
-    // 用于更新备注内容
-    updatavalue(newvalue) {
-      this.record.notes = newvalue;
-    },
     // 用于更新amount
     updataoutput(output) {
       this.record.amount = output;
@@ -70,6 +66,7 @@ export default {
     saveRecord() {
       if (this.record.tags.length === 1) {
         this.$store.commit("createRecord", this.record);
+        this.record.notes = "";
       } else {
         alert("请选择一个标签");
       }

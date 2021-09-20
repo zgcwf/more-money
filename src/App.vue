@@ -15,11 +15,11 @@ body {
   font-family: $font-hei;
   font-size: 16px;
   line-height: 1.5;
-  background: #ebeff2;
+  background: #96a4a7;
 }
 #app {
   max-width: 500px;
   margin: 0 auto;
-  background: #c4c4c4;
+  background: #ebeff2;
 }
 </style>

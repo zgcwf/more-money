@@ -4,7 +4,7 @@
       <Types classPrefix="type"></Types>
 
       <div>
-        <ol>
+        <ol v-if="groupedList.length > 0">
           <li v-for="(group, index) in groupedList" :key="index">
             <h4 class="title">
               {{ beautify(group.title) }}
@@ -20,6 +20,7 @@
           </li>
         </ol>
       </div>
+      <div v-if="groupedList.length === 0">目前没有相关记录</div>
     </Layout>
   </div>
 </template>
@@ -134,7 +135,7 @@ export default {
     background: white;
 
     &.selected {
-      background: #96a4a7;
+      background: #c4c4c4;
 
       &::after {
         display: none;
@@ -152,7 +153,7 @@ export default {
   .title {
     @extend %item;
     .zgc {
-      width: 100px;
+      width: 115px;
     }
   }
   .record {

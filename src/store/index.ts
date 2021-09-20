@@ -64,7 +64,7 @@ const store = new Vuex.Store({
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit("saveRecords");
-      // window.alert("已保存");
+      window.alert("已保存");
       // console.log(state.recordList);
     },
     // 用于缓存recordList
@@ -79,6 +79,12 @@ const store = new Vuex.Store({
       state.tagList = JSON.parse(
         window.localStorage.getItem("tagList") || "[]"
       );
+      if (!state.tagList || state.tagList.length === 0) {
+        store.commit("createTags", "衣");
+        store.commit("createTags", "食");
+        store.commit("createTags", "住");
+        store.commit("createTags", "行");
+      }
     },
     // 创建标签
     createTags(state, name: string) {
@@ -89,7 +95,7 @@ const store = new Vuex.Store({
       }
       state.tagList.push({ id: nanoid(), name: name });
       store.commit("saveTags");
-      window.alert("添加成功");
+      // window.alert("添加成功");
     },
     // 用于缓存tagList
     saveTags(state) {

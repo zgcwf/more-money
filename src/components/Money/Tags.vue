@@ -69,12 +69,14 @@ export default {
     > li {
       $bg: #d9d9d9;
       background: $bg;
-      $h: 24px;
+      $h: 32px;
       height: $h;
       line-height: $h;
+      width: 98px;
+      text-align: center;
       border-radius: $h * 0.3333;
-      padding: 0 16px;
-      margin-right: 12px;
+      // padding: 0 16px;
+      margin: 0 8px;
       margin-top: 4px;
       &.selected {
         background: darken($bg, 50%);
