@@ -64,7 +64,7 @@ const store = new Vuex.Store({
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit("saveRecords");
-
+      // window.alert("已保存");
       // console.log(state.recordList);
     },
     // 用于缓存recordList

@@ -49,9 +49,9 @@ export default {
     },
     groupedList() {
       const recordList = this.recordList;
-      if (recordList.length === 0) {
-        return [];
-      }
+      // if (recordList.length === 0) {
+      //   return [];
+      // }
       // 深拷贝
       const newList = clone(recordList)
         .filter((r) => r.type === this.type) //过滤，实现收入和支出分离
@@ -59,6 +59,9 @@ export default {
           //排序，按时间倒序展示数据
           (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
         );
+      if (newList.length === 0) {
+        return [];
+      }
       const result = [
         {
           //初始化一个数据，并放入存储数据的第0项
