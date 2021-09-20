@@ -1,6 +1,7 @@
 <template>
   <div>
     <label class="notes">
+      <Icon name="beizhu"></Icon>
       <span class="name">{{ fieldName }}</span>
       <input
         type="text"
@@ -34,6 +35,7 @@ export default {
   align-items: center;
   .name {
     padding-right: 16px;
+    margin-left: 5px;
   }
   input {
     height: 48px;

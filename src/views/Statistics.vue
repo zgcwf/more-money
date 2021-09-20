@@ -20,7 +20,9 @@
           </li>
         </ol>
       </div>
-      <div v-if="groupedList.length === 0">目前没有相关记录</div>
+      <div v-if="groupedList.length === 0" class="noResult">
+        <span>暂时还没有记录. 快去记一笔吧~</span>
+      </div>
     </Layout>
   </div>
 </template>
@@ -130,12 +132,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.noResult {
+  padding: 16px;
+  text-align: center;
+  font-size: 80px;
+  color: white;
+  font-family: "方正舒体";
+}
 .x::v-deep {
   .type-item {
     background: white;
 
     &.selected {
-      background: #c4c4c4;
+      background: #dee0e2;
 
       &::after {
         display: none;
