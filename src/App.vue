@@ -18,7 +18,7 @@ body {
   background: #96a4a7;
 }
 #app {
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
   background: #ebeff2;
 }
