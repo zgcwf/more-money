@@ -67,7 +67,7 @@ export default {
     max-height: 100px;
     overflow: auto;
     > li {
-      $bg: #d9d9d9;
+      $bg: #96a4a7;
       background: $bg;
       $h: 32px;
       height: $h;

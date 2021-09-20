@@ -108,7 +108,7 @@ export default {
         width: 25 * 2%;
       }
       // 用选择器实现颜色渐变
-      $bg: #f2f2f2;
+      $bg: #ebeff2;
       &:nth-child(1) {
         background: $bg;
       }

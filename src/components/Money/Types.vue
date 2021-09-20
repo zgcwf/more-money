@@ -67,6 +67,7 @@ export default {
       width: 100%;
       height: 4px;
       background: #333;
+
       //  不用border-bottom，因为其来回切换时界面会有轻微抖动
       //  border-bottom: 4px solid #000;
     }

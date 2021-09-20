@@ -144,7 +144,10 @@ export default {
     background: white;
 
     &.selected {
-      background: #dee0e2;
+      background: #c4c4c4;
+      color: white;
+      font-family: "方正舒体";
+      font-size: 36px;
 
       &::after {
         display: none;
