@@ -16,6 +16,7 @@ const store = new Vuex.Store({
     tagList: [],
     currentTag: undefined,
   } as RootState,
+
   mutations: {
     // 得到对应id的tag
     setCurrentTag(state, id: string) {
@@ -36,6 +37,7 @@ const store = new Vuex.Store({
         }
       }
     },
+    // 用来删除标签
     removeTag(state, id: string) {
       let index = -1;
       for (let i = 0; i < state.tagList.length; i++) {

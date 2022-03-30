@@ -2,7 +2,6 @@
   <div class="x">
     <Layout>
       <Types classPrefix="type"></Types>
-
       <div>
         <ol v-if="groupedList.length > 0">
           <li v-for="(group, index) in groupedList" :key="index">
@@ -29,12 +28,11 @@
 
 <script>
 import Types from "../components/Money/Types.vue";
-import Tabs from "../components/Tabs.vue";
 import dayjs from "dayjs";
 import clone from "@/lib/libjs/clone";
 export default {
   name: "Statistics",
-  components: { Types, Tabs },
+  components: { Types },
   beforeCreate() {
     // 读取初始化缓存
     this.$store.commit("fetchRecords");
@@ -73,6 +71,7 @@ export default {
           items: [newList[0]],
         },
       ];
+
       for (let i = 1; i < newList.length; i++) {
         //从第二项开始遍历
         const current = newList[i]; //让current等于当前项
@@ -87,6 +86,7 @@ export default {
           });
         }
       }
+      // 总计
       result.map((group) => {
         group.total = group.items.reduce((sum, item) => {
           return sum + item.amount;
@@ -122,11 +122,9 @@ export default {
   },
   mounted() {
     this.$bus.$on("update:type", this.updatetype);
-    this.$bus.$on("update:interval", this.updateinterval);
   },
   beforeDestroy() {
     this.$bus.$off("update:type");
-    this.$bus.$off("update:interval");
   },
 };
 </script>
@@ -148,9 +146,15 @@ export default {
       color: white;
       font-family: "方正舒体";
       font-size: 36px;
-
       &::after {
-        display: none;
+        // 加上&表示当前元素
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #333;
       }
     }
   }

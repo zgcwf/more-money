@@ -36,7 +36,7 @@ export default {
     // 创建标签
     createTag() {
       const name = window.prompt("请输入标签名");
-      // 得到输入值name，如果name不为空，执行下面语句
+      // 得到输入值name，如果name为空，执行下面语句
       if (!name) {
         return window.alert("标签名不能为空");
       }

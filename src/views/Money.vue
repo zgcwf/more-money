@@ -8,7 +8,6 @@
         :value.sync="record.notes"
       ></Notes>
     </div>
-
     <Tags :dataSource="tags"></Tags>
     <!-- <Tags :data-source.sync="tags" /> -->
     <Types></Types>

@@ -31,6 +31,7 @@ export default {
       return this.$store.state.currentTag;
     },
   },
+  // 找到当前选择的路径对应的数据
   created() {
     // 得到路由参数id
     const id = this.$route.params.id;
